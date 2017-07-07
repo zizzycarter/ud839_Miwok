@@ -17,12 +17,35 @@ package com.example.android.miwok;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class FamilyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_family);
+        setContentView(R.layout.word_list);
+
+        // creates the list of words
+        ArrayList<Word> words = new ArrayList<Word>();
+        words.add(new Word("red", "wetetti"));
+        words.add(new Word("green", "chokooki"));
+        words.add(new Word("brown", "takaaki"));
+        words.add(new Word("gray", "topoppi"));
+        words.add(new Word("black", "kululli"));
+        words.add(new Word("white", "kelelli"));
+        words.add(new Word("dusty yellow", "topiise"));
+        words.add(new Word("mustard yellow", "chiwiita"));
+
+        // WordAdapter is a custom class adapter ( takes in more than one text View) that knows how to create list items for each item in the list.
+        WordAdapter adapter = new WordAdapter(this, words);
+
+        //Finds and gets the layout for the colors words display
+        ListView listView = (ListView) findViewById(R.id.list);
+
+        listView.setAdapter(adapter);
+
     }
 }
